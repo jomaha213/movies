@@ -3,3 +3,5 @@ Pillow>=10.0.0
 cloudinary
 whitenoise
 gunicorn
+dj-database-url
+psycopg2-binary
