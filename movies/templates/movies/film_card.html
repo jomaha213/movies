@@ -1,0 +1,14 @@
+<div class="card">
+    {% if film.plakat %}
+        <img src="{{ film.plakat.url }}" class="card-img-top" alt="Plakat filmu {{ film.tytul }}">
+    {% else %}
+        <div class="bg-secondary text-center text-white d-flex align-items-center justify-content-center" style="height: 300px;">
+            <span class="h4">Brak plakatu</span>
+        </div>
+    {% endif %}
+    <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ film.tytul }}</h5>
+        <p class="card-text">{{ film.gatunek }} | {{ film.rok_produkcji }}</p>
+        <a href="{% url 'movie_detail' film.pk %}" class="btn btn-sm btn-primary mt-auto">Szczegóły</a>
+    </div>
+</div>

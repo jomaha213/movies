@@ -1,0 +1,17 @@
+{% extends 'movies/base.html' %}
+{% block title %}Ulubione filmy{% endblock %}
+
+{% block content %}
+<h2 class="section-title"><i class="bi bi-heart-fill me-2" style="color: #e74c3c;"></i>Twoje ulubione</h2>
+<div class="row mt-4">
+    {% for fav in favorites %}
+        <div class="col-md-2 mb-4">
+            {% include "movies/film_card.html" with film=fav.film %}
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">Nie masz jeszcze żadnych ulubionych filmów. <a href="{% url 'index' %}">Przeglądaj filmy</a> i dodaj do ulubionych!</div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

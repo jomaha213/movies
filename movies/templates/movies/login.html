@@ -1,0 +1,23 @@
+{% extends 'movies/base.html' %}
+{% block title %}Logowanie{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4 shadow-lg" style="background-color: var(--bg-card); border-radius: 16px;">
+            <h2 class="text-center mb-4"><i class="bi bi-box-arrow-in-right me-2"></i>Zaloguj się</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary w-100">Zaloguj</button>
+            </form>
+            <p class="text-center mt-3 mb-0">Nie masz konta? <a href="{% url 'register' %}" style="color: var(--accent);">Zarejestruj się</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

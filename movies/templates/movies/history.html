@@ -1,0 +1,18 @@
+{% extends 'movies/base.html' %}
+{% block title %}Historia oglądania{% endblock %}
+
+{% block content %}
+<h2 class="section-title"><i class="bi bi-clock-history me-2"></i>Historia oglądania</h2>
+<div class="row mt-4">
+    {% for entry in history %}
+        <div class="col-md-2 mb-4">
+            {% include "movies/film_card.html" with film=entry.film %}
+            <small class="text-muted">Obejrzano: {{ entry.data_obejrzenia|date:"d.m.Y H:i" }}</small>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">Twoja historia oglądania jest pusta. Zacznij oglądać filmy!</div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'movies/base.html' %}
+{% block title %}Strona główna{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <form class="d-flex w-100" method="get">
+        <input class="form-control search-box me-2" type="search" name="q" placeholder="Szukaj filmu..." value="{{ query }}">
+        <button class="btn btn-primary" type="submit">Szukaj</button>
+    </form>
+</div>
+
+<h2 class="section-title">Najnowsze filmy</h2>
+<div class="row">
+    {% for film in najnowsze %}
+        <div class="col-md-2 mb-4">
+            {% include "movies/film_card.html" %}
+        </div>
+    {% empty %}
+        <p class="text-muted">Brak filmów.</p>
+    {% endfor %}
+</div>
+
+<h2 class="section-title">Wszystkie filmy</h2>
+<div class="row">
+    {% for film in filmy %}
+        <div class="col-md-2 mb-4">
+            {% include "movies/film_card.html" %}
+        </div>
+    {% empty %}
+        <p class="text-muted">Brak filmów do wyświetlenia.</p>
+    {% endfor %}
+</div>
+{% endblock %}
