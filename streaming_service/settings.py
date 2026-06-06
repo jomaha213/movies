@@ -18,8 +18,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cloudinary',
-    'cloudinary_storage',
+    # 'cloudinary',          # ❌ Nie potrzebujemy tego przy CloudinaryField
+    # 'cloudinary_storage',  # ❌ Nie potrzebujemy
     'movies',
 ]
 
@@ -76,18 +76,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'static']        # lokalny katalog static
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files – konfiguracja Cloudinary (jeśli zmienne środowiskowe są ustawione)
-# W przeciwnym razie używamy lokalnego systemu plików (development)
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ['CLOUDINARY_CLOUD_NAME'],
-    'API_KEY': os.environ['CLOUDINARY_API_KEY'],
-    'API_SECRET': os.environ['CLOUDINARY_API_SECRET'],
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-MEDIA_URL = '/media/'
+# Media files – konfiguracja dla CloudinaryField (tylko MEDIA_URL potrzebne)
+MEDIA_URL = '/media/'      # w szablonach i tak użyjemy film.plakat.url (zwraca pełny URL z chmury)
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'

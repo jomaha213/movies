@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+from cloudinary.models import CloudinaryField
 
 class Kategoria(models.Model):
     nazwa = models.CharField(max_length=100, unique=True)
@@ -14,7 +15,7 @@ class Film(models.Model):
     rok_produkcji = models.PositiveIntegerField()
     gatunek = models.CharField(max_length=100)
     czas_trwania = models.PositiveIntegerField(help_text='Czas w minutach')
-    plakat = models.ImageField(upload_to='plakaty/', null=True, blank=True)
+    plakat = CloudinaryField('image', null=True, blank=True)  # ZMIANA
     data_dodania = models.DateTimeField(auto_now_add=True)
     kategorie = models.ManyToManyField(Kategoria, related_name='filmy', blank=True)
 
