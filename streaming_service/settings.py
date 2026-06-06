@@ -81,19 +81,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files – konfiguracja Cloudinary (jeśli zmienne środowiskowe są ustawione)
 # W przeciwnym razie używamy lokalnego systemu plików (development)
-if os.environ.get('CLOUDINARY_CLOUD_NAME'):
-    # Cloudinary
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': os.environ['CLOUDINARY_CLOUD_NAME'],
-        'API_KEY': os.environ['CLOUDINARY_API_KEY'],
-        'API_SECRET': os.environ['CLOUDINARY_API_SECRET'],
-    }
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    MEDIA_URL = '/media/'   # Cloudinary zwróci pełny URL, ale MEDIA_URL używamy w szablonach
-else:
-    # Lokalny system plików
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = BASE_DIR / 'media'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ['CLOUDINARY_CLOUD_NAME'],
+    'API_KEY': os.environ['CLOUDINARY_API_KEY'],
+    'API_SECRET': os.environ['CLOUDINARY_API_SECRET'],
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_URL = '/media/'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
